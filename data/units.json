@@ -1,0 +1,54 @@
+{
+  "games": [
+    {
+      "game_id": "warhammer_40k",
+      "game_name": "Warhammer 40k"
+    }
+  ],
+  "factions": [
+    {
+      "faction_id": "space_marines",
+      "faction_name": "Space Marines",
+      "game_id": "warhammer_40k"
+    }
+  ],
+  "units": [
+    {
+      "unit_id": "intercessor_squad",
+      "unit_name": "Intercessor Squad",
+      "faction_id": "space_marines",
+      "base_points": 80,
+      "role": "battleline",
+      "keywords": ["battleline", "infantry", "grenades", "imperium", "tacticus", "intercessor_squad", "faction:adeptus_astartes"],
+      "models": [
+        {"model_id": "intercessor_sergeant", "quantity": 1},
+        {"model_id": "intercessor", "quantity": 4}
+      ]
+    },
+    {
+      "unit_id": "azrael",
+      "unit_name": "Azrael",
+      "faction_id": "space_marines",
+      "base_points": 125,
+      "role": "epic_hero",
+      "keywords": ["epic_hero", "character", "infantry", "grenades", "imperium", "tacticus", "azrael", "faction:dark_angels", "faction:adeptus_astartes", "chapter_master", "deathwing", "warlord"],
+      "models": [
+        {"model_id": "azrael", "quantity": 1}
+      ]
+    }
+  ],
+  "models": [
+    {
+      "model_id": "intercessor_sergeant",
+      "model_name": "Intercessor Sergeant"
+    },
+    {
+      "model_id": "intercessor",
+      "model_name": "Intercessor"
+    },
+    {
+      "model_id": "azrael",
+      "model_name": "Azrael"
+    }
+  ]
+}
