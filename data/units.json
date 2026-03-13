@@ -3,6 +3,10 @@
     {
       "game_id": "warhammer_40k",
       "game_name": "Warhammer 40k"
+    },
+    {
+      "game_id": "age_of_sigmar",
+      "game_name": "Age of Sigmar"
     }
   ],
   "factions": [
@@ -21,8 +25,8 @@
       "role": "battleline",
       "keywords": ["battleline", "infantry", "grenades", "imperium", "tacticus", "intercessor_squad", "faction:adeptus_astartes"],
       "models": [
-        {"model_id": "intercessor_sergeant", "quantity": 1},
-        {"model_id": "intercessor", "quantity": 4}
+        {"model_id": "intercessor_sergeant", "min_quantity": 1, "max_quantity": 1},
+        {"model_id": "intercessor", "min_quantity": 4, "max_quantity": 9}
       ]
     },
     {
@@ -33,7 +37,19 @@
       "role": "epic_hero",
       "keywords": ["epic_hero", "character", "infantry", "grenades", "imperium", "tacticus", "azrael", "faction:dark_angels", "faction:adeptus_astartes", "chapter_master", "deathwing", "warlord"],
       "models": [
-        {"model_id": "azrael", "quantity": 1}
+        {"model_id": "azrael", "min_quantity": 1, "max_quantity": 1}
+      ]
+    },
+    {
+      "unit_id": "deathwing_knights",
+      "unit_name": "Deathwing Knights",
+      "faction_id": "space_marines",
+      "base_points": 250,
+      "role": "infantry",
+      "keywords": ["infantry", "imperium", "faction:dark_angels", "faction:adeptus_astartes", "deathwing_knights", "terminator", "deathwing"],
+      "models": [
+        {"model_id": "knight_master", "min_quantity": 1, "max_quantity": 1},
+        {"model_id": "deathwing_knight", "min_quantity": 4, "max_quantity": 4}
       ]
     }
   ],
@@ -49,6 +65,14 @@
     {
       "model_id": "azrael",
       "model_name": "Azrael"
+    },
+    {
+      "model_id": "deathwing_knight",
+      "model_name": "Deathwing Knight"
+    },
+    {
+      "model_id": "knight_master",
+      "model_name": "Knight Master"
     }
   ]
 }
