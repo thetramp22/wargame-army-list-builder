@@ -1,3 +1,9 @@
+class ModelComposition():
+  def __init__(self, model, min_quantity, max_quantity):
+    self.model = model
+    self.min_quantity = min_quantity
+    self.max_quantity = max_quantity
+
 class Unit():
   def __init__(self, unit_id, unit_name, faction_id, base_points, role, keywords, models):
     self.unit_id = unit_id
