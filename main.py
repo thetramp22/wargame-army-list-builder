@@ -2,15 +2,19 @@ from loaders.data_loader import DataLoader
 
 def main():
   loader = DataLoader()
-  loader.load()
+  game_data = loader.load()
 
-  print(f"games loaded: {len(loader.games_by_id)}")
-  print(f"factions loaded: {len(loader.factions_by_id)}")
-  print(f"models loaded: {len(loader.models_by_id)}")
-  print(f"units loaded: {len(loader.units_by_id)}")
+  print(f"games loaded: {len(game_data.games_by_id)}")
+  print(f"factions loaded: {len(game_data.factions_by_id)}")
+  print(f"models loaded: {len(game_data.models_by_id)}")
+  print(f"units loaded: {len(game_data.units_by_id)}")
 
-  factions = loader.get_factions_in_game("warhammer_40k")
+  units = game_data.units_by_faction["space_marines"]
+  for u in units:
+    print(u)
+
+  factions = game_data.factions_by_game["warhammer_40k"]
   for f in factions:
-    print(f.faction_id)
+    print(f)
 
 main()

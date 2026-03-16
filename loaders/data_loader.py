@@ -2,6 +2,7 @@ from models.game import Game
 from models.faction import Faction
 from models.unit import Unit, ModelComposition
 from models.model import Model
+from loaders.game_data import GameData
 import json
 import sys
 
@@ -14,6 +15,7 @@ class DataLoader():
     self.units_by_id = {}
     self.models_by_id = {}
     self._data = None
+    self._game_data = GameData()
 
   def load(self):
     self._get_data()
@@ -21,6 +23,7 @@ class DataLoader():
     self._load_factions()
     self._load_models()
     self._load_units()
+    return self._game_data
   
   def _get_data(self):
     try:
@@ -38,26 +41,29 @@ class DataLoader():
   def _load_games(self):
     for game in self._data["games"]:
       key = game["game_id"]
-      self.games_by_id[key] = Game(game["game_id"], game["game_name"])
+      self._game_data.games_by_id[key] = Game(game["game_id"], game["game_name"])
   
   def _load_factions(self):
     for faction in self._data["factions"]:
       key = faction["faction_id"]
-      self.factions_by_id[key] = Faction(faction["faction_id"], faction["faction_name"], faction["game_id"])
-  
+      self._game_data.factions_by_id[key] = Faction(faction["faction_id"], faction["faction_name"], faction["game_id"])
+      if faction["game_id"] in self._game_data.factions_by_game:
+        self._game_data.factions_by_game[faction["game_id"]].append(faction["faction_id"])
+      else: self._game_data.factions_by_game[faction["game_id"]] = [faction["faction_id"]]
+
   def _load_models(self):
     for model in self._data["models"]:
       key = model["model_id"]
-      self.models_by_id[key] = Model(model["model_id"], model["model_name"])
+      self._game_data.models_by_id[key] = Model(model["model_id"], model["model_name"])
   
   def _load_units(self):
     for unit in self._data["units"]:
       key = unit["unit_id"]
-      faction_obj = self.factions_by_id[unit["faction_id"]]
+      faction_obj = self._game_data.factions_by_id[unit["faction_id"]]
       models = []
       for model in unit["models"]:
-        models.append(ModelComposition(self.models_by_id[model["model_id"]], model["min_quantity"], model["max_quantity"]))
-      self.units_by_id[key] = Unit(
+        models.append(ModelComposition(self._game_data.models_by_id[model["model_id"]], model["min_quantity"], model["max_quantity"]))
+      self._game_data.units_by_id[key] = Unit(
         unit["unit_id"],
         unit["unit_name"],
         faction_obj,
@@ -66,13 +72,8 @@ class DataLoader():
         unit["keywords"],
         models
       )
+      if unit["faction_id"] in self._game_data.units_by_faction:
+        self._game_data.units_by_faction[unit["faction_id"]].append(unit["unit_id"])
+      else: self._game_data.units_by_faction[unit["faction_id"]] = [unit["unit_id"]]
       
-  def get_factions_in_game(self, game_id):
-    factions = []
-    for faction in self.factions_by_id.values():
-      if faction.game_id == game_id:
-        factions.append(faction)
-    return factions
-
-  def get_faction(self, faction_id):
-    return self.factions_by_id[faction_id]
+  
