@@ -1,5 +1,5 @@
 class Game():
-  def __init__(self, game_id, game_name):
+  def __init__(self, game_id: str, game_name: str):
     self.id = game_id
     self.name = game_name
 

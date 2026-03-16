@@ -10,11 +10,7 @@ filepath = "./data/units.json"
 
 class DataLoader():
   def __init__(self):
-    self.games_by_id = {}
-    self.factions_by_id = {}
-    self.units_by_id = {}
-    self.models_by_id = {}
-    self._data = None
+    self._data = {}
     self._game_data = GameData()
 
   def load(self):

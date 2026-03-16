@@ -2,10 +2,10 @@ from models.army_unit import ArmyUnit
 from loaders.game_data import GameData
 
 class Army():
-  def __init__(self, name, faction_id):
+  def __init__(self, name: str, faction_id: str):
     self.name = name
     self.faction_id = faction_id
-    self.units = []
+    self.units: list[ArmyUnit] = []
 
   def add_unit(self, unit_id):
     matching_unit = next((unit for unit in self.units if unit.id == unit_id), None)

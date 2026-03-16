@@ -1,5 +1,5 @@
 class Faction():
-  def __init__(self, faction_id, faction_name, game_id):
+  def __init__(self, faction_id: str, faction_name: str, game_id: str):
     self.id = faction_id
     self.name = faction_name
     self.game_id = game_id

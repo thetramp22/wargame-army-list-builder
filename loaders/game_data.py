@@ -1,12 +1,17 @@
+from models.game import Game
+from models.faction import Faction
+from models.unit import Unit, ModelComposition
+from models.model import Model
+
 class GameData():
   def __init__(self):
-    self.games_by_id = {}
-    self.factions_by_id = {}
-    self.units_by_id = {}
-    self.models_by_id = {}
-    self.models_by_unit = {}
-    self.units_by_faction = {}
-    self.factions_by_game = {}
+    self.games_by_id: dict[str, Game] = {}
+    self.factions_by_id: dict[str, Faction] = {}
+    self.units_by_id: dict[str, Unit] = {}
+    self.models_by_id: dict[str, Model] = {}
+    self.models_by_unit: dict[str,list] = {}
+    self.units_by_faction: dict[str, list] = {}
+    self.factions_by_game: dict[str, list] = {}
 
   def get_game(self, game_id):
     return self.games_by_id[game_id]
