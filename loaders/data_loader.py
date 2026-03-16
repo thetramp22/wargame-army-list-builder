@@ -61,8 +61,11 @@ class DataLoader():
       key = unit["unit_id"]
       faction_obj = self._game_data.factions_by_id[unit["faction_id"]]
       models = []
-      for model in unit["models"]:
+      for model in unit["models"]:        
         models.append(ModelComposition(self._game_data.models_by_id[model["model_id"]], model["min_quantity"], model["max_quantity"]))
+        if unit["unit_id"] in self._game_data.models_by_unit:
+          self._game_data.models_by_unit[unit["unit_id"]].append(model["model_id"])
+        else: self._game_data.models_by_unit[unit["unit_id"]] = [model["model_id"]]
       self._game_data.units_by_id[key] = Unit(
         unit["unit_id"],
         unit["unit_name"],
