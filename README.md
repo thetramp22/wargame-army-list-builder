@@ -12,7 +12,7 @@ The goal is for the core logic of the program to be able to:
 
 To start, the program will pull from a local database of units located in a JSON file.  Later that data can be pulled from an external source. Similarly, the program will initially be used through the CLI and later the logic can be converted into an API.
 
-## Installation ![Static Badge](https://img.shields.io/badge/Status-WIP-yellow)
+## Installation
 WIP
 
 ## Usage Instructions
@@ -38,7 +38,7 @@ The program should be able to:
 #### Milestone 2 - Build Lookup Systems ![Static Badge](https://img.shields.io/badge/Status-In_Progress-green)
 The program can find objects quickly.
 
-The data loader should create lookup dictionaries and then be able to do things like:
+The data loader should create lookup dictionaries and then program should be able to do things like:
 - Get faction by ID
 - Get all units belonging to a faction
 - Get models for a unit

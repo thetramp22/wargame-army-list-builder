@@ -14,6 +14,16 @@
       "faction_id": "space_marines",
       "faction_name": "Space Marines",
       "game_id": "warhammer_40k"
+    },
+    {
+      "faction_id": "orks",
+      "faction_name": "Orks",
+      "game_id": "warhammer_40k"
+    },
+    {
+      "faction_id": "stormcast_eternals",
+      "faction_name": "Stormcast Eternals",
+      "game_id": "age_of_sigmar"
     }
   ],
   "units": [

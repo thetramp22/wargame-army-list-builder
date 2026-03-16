@@ -66,3 +66,13 @@ class DataLoader():
         unit["keywords"],
         models
       )
+      
+  def get_factions_in_game(self, game_id):
+    factions = []
+    for faction in self.factions_by_id.values():
+      if faction.game_id == game_id:
+        factions.append(faction)
+    return factions
+
+  def get_faction(self, faction_id):
+    return self.factions_by_id[faction_id]
