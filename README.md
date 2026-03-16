@@ -35,7 +35,7 @@ The program should be able to:
 - store them in memory
 - build lookup dictionaries
 
-#### Milestone 2 - Build Lookup Systems ![Static Badge](https://img.shields.io/badge/Status-In_Progress-green)
+#### Milestone 2 - Build Lookup Systems ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
 The program can find objects quickly.
 
 The data loader should create lookup dictionaries and then program should be able to do things like:
@@ -43,7 +43,7 @@ The data loader should create lookup dictionaries and then program should be abl
 - Get all units belonging to a faction
 - Get models for a unit
 
-#### Milestone 3 - Create the Army Object ![Static Badge](https://img.shields.io/badge/Status-Not_Started-gray)
+#### Milestone 3 - Create the Army Object ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
 The program can take user data to create an Army object.
 
 An army should store
@@ -57,10 +57,10 @@ The program should be able to:
 - remove unit
 - show army
 
-#### Milestone 4 - Points Calculation ![Static Badge](https://img.shields.io/badge/Status-Not_Started-gray)
+#### Milestone 4 - Points Calculation ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
 The program can calculate the total points for a user made army.
 
-#### Milestone 5 - Army Validation ![Static Badge](https://img.shields.io/badge/Status-Not_Started-gray)
+#### Milestone 5 - Army Validation ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
 The program can check the point totals against army building rules.
 
 The program should validate things like:
@@ -68,7 +68,7 @@ The program should validate things like:
 - points cannot exceed limit
 - maximum duplicate units
 
-#### Milestone 6 - Saving and Loading Armies ![Static Badge](https://img.shields.io/badge/Status-Not_Started-gray)
+#### Milestone 6 - Saving and Loading Armies ![Static Badge](https://img.shields.io/badge/Status-In_Progress-green)
 The program can save and load armies from storage.
 
 Armies will be saved as JSON files.
