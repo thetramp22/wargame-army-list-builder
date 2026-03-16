@@ -1,4 +1,5 @@
 from models.army_unit import ArmyUnit
+from loaders.game_data import GameData
 
 class Army():
   def __init__(self, name, faction_id):
