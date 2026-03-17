@@ -6,3 +6,5 @@ __pycache__/
 # Test files
 tests/
 test.sh
+
+data/armies.json
