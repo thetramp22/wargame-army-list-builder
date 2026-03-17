@@ -1,36 +1,54 @@
 from loaders.data_loader import DataLoader
 from loaders.game_data import GameData
 from models.army import Army
+from cli.interface import Interface
+import json
+import sys
+
+army_data_filename = "./data/armies.json"
+interface = Interface()
 
 def main():
   loader = DataLoader()
   game_data = loader.load()
 
-  army = Army("My Space Marines", "space_marines")
-  army.add_unit("intercessor_squad")
-  army.add_unit("boyz")
-  army.add_unit("deathwing_knights")
-  army.add_unit("deathwing_knights")
-  army.add_unit("deathwing_knights")
-  army.add_unit("hellblaster_squad")
-  army.add_unit("hellblaster_squad")
-  army.add_unit("hellblaster_squad")
-  army.add_unit("azrael")
-  army.add_unit("azrael")
-  army.add_unit("azrael")
-  army.add_unit("inner_circle_companions")
-  army.add_unit("inner_circle_companions")
-  army.add_unit("inner_circle_companions")
-  army.add_unit("librarian")
+def save_army_to_file(army: Army, filename: str):
+  army_data = army.to_dict()
 
-  print(f"Army: {army.name}")
-  print(f"Units:")
-  for u in army.units:
-    print(f"{game_data.units_by_id[u.id].name} x{u.quantity}")
+  try:
+    with open(filename, 'r') as file:
+      file_data = json.load(file)
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    sys.exit(1)
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from the file '{filename}'. The file may be malformed.")
+    sys.exit(1)
 
-  print(f"Total Points: {calculate_total_points(army, game_data)}")
+  file_data["armies"][army.name] = army_data
 
-  validate_army(army, game_data)
+  with open(filename, 'w') as file:
+    json.dump(file_data, file, indent=2)
+    print(f"{army.name} saved successfully to {filename}")
+
+def load_army_from_file(army_name: str, filename: str):
+  try:
+    with open(filename, 'r') as file:
+      file_data = json.load(file)
+  except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+    sys.exit(1)
+  except json.JSONDecodeError:
+    print(f"Error: Failed to decode JSON from the file '{filename}'. The file may be malformed.")
+    sys.exit(1)
+
+  if file_data["armies"][army_name]:
+    army_data = file_data["armies"][army_name]
+    army_to_load = Army(army_data["name"], army_data["faction_id"])
+    for unit in army_data["units"]:
+      for _ in range(0, unit["quantity"]):
+        army_to_load.add_unit(unit["id"])
+  return army_to_load
 
 def calculate_total_points(army: Army, game_data: GameData):
   total_points = 0
@@ -69,4 +87,5 @@ def validate_army(army: Army, game_data: GameData):
 
   return is_valid_army
 
-main()
+if __name__ == '__main__':
+    interface.cmdloop()

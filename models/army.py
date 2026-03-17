@@ -25,5 +25,9 @@ class Army():
     else:
       self.units.remove(matching_unit)
 
+  def to_dict(self):
+    army_unit_dict = [unit.to_dict() for unit in self.units]
+    return {"name": self.name, "faction_id": self.faction_id, "units": army_unit_dict}
+
 
   
