@@ -2,34 +2,45 @@ from loaders.data_loader import DataLoader
 from loaders.game_data import GameData
 from models.army import Army
 from cli.interface import Interface
+import os
 import json
 import sys
 
-army_data_filename = "./data/armies.json"
+army_data_filepath = "./data/armies.json"
 interface = Interface()
 
 def main():
   loader = DataLoader()
   game_data = loader.load()
 
-def save_army_to_file(army: Army, filename: str):
+  army = Army("big blue", "space_marines")
+  army.add_unit("intercessor")
+  army.add_unit("librarian")
+
+  save_army_to_file(army, army_data_filepath)
+
+def save_army_to_file(army: Army, filepath: str):
   army_data = army.to_dict()
 
+  if not os.path.exists(army_data_filepath):
+    print(f"Armies file not found, creating new file at: {filepath}")
+    with open(filepath, 'w') as file:
+      json.dump({"armies": {}}, file, indent=2)
   try:
-    with open(filename, 'r') as file:
+    with open(filepath, 'r') as file:
       file_data = json.load(file)
   except FileNotFoundError:
-    print(f"Error: The file '{filename}' was not found.")
+    print(f"Error: The file '{filepath}' was not found.")
     sys.exit(1)
   except json.JSONDecodeError:
-    print(f"Error: Failed to decode JSON from the file '{filename}'. The file may be malformed.")
+    print(f"Error: Failed to decode JSON from the file '{filepath}'. The file may be malformed.")
     sys.exit(1)
 
   file_data["armies"][army.name] = army_data
 
-  with open(filename, 'w') as file:
+  with open(filepath, 'w') as file:
     json.dump(file_data, file, indent=2)
-    print(f"{army.name} saved successfully to {filename}")
+    print(f"{army.name} saved successfully to {filepath}")
 
 def load_army_from_file(army_name: str, filename: str):
   try:
@@ -87,5 +98,7 @@ def validate_army(army: Army, game_data: GameData):
 
   return is_valid_army
 
-if __name__ == '__main__':
-    interface.cmdloop()
+# if __name__ == '__main__':
+#     interface.cmdloop()
+
+main()
