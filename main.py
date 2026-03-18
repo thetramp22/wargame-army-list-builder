@@ -1,19 +1,15 @@
 from loaders.data_loader import DataLoader
-from loaders.game_data import GameData
-from models.army import Army
-from models.faction import Faction
 from services.army_builder import ArmyBuilder
 from cli.interface import Interface
-import os
-import json
-import sys
+
+filepath = "./data/armies.json"
 
 interface = Interface()
 
 def main():
   loader = DataLoader()
   game_data = loader.load()
-  army_builder = ArmyBuilder(game_data)
+  army_builder = ArmyBuilder(game_data, filepath)
   
   army = army_builder.load_army_from_file("big blue")
 

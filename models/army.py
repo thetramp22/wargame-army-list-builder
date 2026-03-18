@@ -12,6 +12,3 @@ class Army():
     army_unit_dict = [unit.to_dict() for unit in self.units]
     faction_dict = {"id": self.faction.id, "name": self.faction.name, "game_id": self.faction.game_id}
     return {"name": self.name, "faction": faction_dict, "units": army_unit_dict}
-
-
-  
