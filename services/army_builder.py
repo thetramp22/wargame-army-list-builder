@@ -7,9 +7,16 @@ class ArmyBuilder():
     self.game_data = game_data
     self.filepath = filepath
 
-  def create_army(self, name, faction_id):
+  def create_army(self, name: str, game_id: str, faction_id: str):
+    success = True
+    messages = []
+    if not faction_id in self.game_data.get_factions_by_game(game_id):
+      success = False
+      messages.append(f"Invalid Faction: {faction_id}")
+      return {"success": success, "army": None, "messages": messages}
     faction = self.game_data.get_faction(faction_id)
-    return Army(name, faction)
+    army = Army(name, faction)
+    return {"success": success, "army": army, "messages": messages}
 
   def add_unit_to_army(self, unit_id: str, army: Army, quantity: int= 1):
     added_successfully = True
