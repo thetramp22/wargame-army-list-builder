@@ -37,7 +37,7 @@ class GameData():
       units.append(self.units_by_id[unit])
     return units
   
-  def get_factions_in_game(self, game_id):
+  def get_factions_by_game(self, game_id):
     factions = []
     for faction in self.factions_by_game[game_id]:
       factions.append(self.factions_by_id[faction])
