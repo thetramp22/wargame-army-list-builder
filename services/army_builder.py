@@ -13,7 +13,8 @@ class ArmyBuilder:
     def create_army(self, name: str, game_id: str, faction_id: str):
         success = True
         messages = []
-        if not faction_id in self.game_data.get_factions_by_game(game_id):
+        faction = self.game_data.get_faction(faction_id)
+        if not faction in self.game_data.get_factions_by_game(game_id):
             success = False
             messages.append(f"Invalid Faction: {faction_id}")
             return {"success": success, "army": None, "messages": messages}

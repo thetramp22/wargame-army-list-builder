@@ -50,11 +50,11 @@ class DataLoader:
             )
             if faction["game_id"] in self._game_data.factions_by_game:
                 self._game_data.factions_by_game[faction["game_id"]].append(
-                    faction["faction_id"]
+                    self._game_data.factions_by_id[key]
                 )
             else:
                 self._game_data.factions_by_game[faction["game_id"]] = [
-                    faction["faction_id"]
+                    self._game_data.factions_by_id[key]
                 ]
 
     def _load_models(self):
@@ -78,13 +78,9 @@ class DataLoader:
                     )
                 )
                 if unit["unit_id"] in self._game_data.models_by_unit:
-                    self._game_data.models_by_unit[unit["unit_id"]].append(
-                        model["model_id"]
-                    )
+                    self._game_data.models_by_unit[unit["unit_id"]].append(models[-1])
                 else:
-                    self._game_data.models_by_unit[unit["unit_id"]] = [
-                        model["model_id"]
-                    ]
+                    self._game_data.models_by_unit[unit["unit_id"]] = [models[-1]]
             self._game_data.units_by_id[key] = Unit(
                 unit["unit_id"],
                 unit["unit_name"],
@@ -96,7 +92,9 @@ class DataLoader:
             )
             if unit["faction_id"] in self._game_data.units_by_faction:
                 self._game_data.units_by_faction[unit["faction_id"]].append(
-                    unit["unit_id"]
+                    self._game_data.units_by_id[key]
                 )
             else:
-                self._game_data.units_by_faction[unit["faction_id"]] = [unit["unit_id"]]
+                self._game_data.units_by_faction[unit["faction_id"]] = [
+                    self._game_data.units_by_id[key]
+                ]
