@@ -23,14 +23,20 @@ class ArmyBuilder:
         return {"success": success, "army": army, "messages": messages}
 
     def add_unit_to_army(self, unit_id: str, army: Army, quantity: int = 1):
-        added_successfully = True
+        success = True
         messages = []
         if quantity == 0:
-            added_successfully = False
+            success = False
             messages.append("cannot add 0 units")
+            return {"success": success, "unit": None, "messages": messages}
         if quantity < 0:
-            added_successfully = False
+            success = False
             messages.append("cannot add negative units")
+            return {"success": success, "unit": None, "messages": messages}
+        if not unit_id in self.game_data.units_by_id:
+            success = False
+            messages.append(f"Invalid Unit: {unit_id}")
+            return {"success": success, "unit": None, "messages": messages}
         matching_unit = next(
             (army_unit for army_unit in army.units if army_unit.unit.id == unit_id),
             None,
@@ -39,17 +45,17 @@ class ArmyBuilder:
             matching_unit.quantity += quantity
         else:
             army.units.append(ArmyUnit(self.game_data.get_unit(unit_id), quantity))
-        return {"added_successfully": added_successfully, "messages": messages}
+        return {"success": success, "unit": army.units[-1], "messages": messages}
 
     def remove_unit_from_army(self, unit_id: str, army: Army, quantity: int = 1):
-        removed_successfully = True
+        success = True
         messages = []
         matching_unit = next(
             (army_unit for army_unit in army.units if army_unit.unit.id == unit_id),
             None,
         )
         if matching_unit is None:
-            removed_successfully = False
+            success = False
             messages.append(f"No {unit_id} unit to remove")
         elif matching_unit.quantity > quantity:
             matching_unit.quantity -= quantity
@@ -61,9 +67,9 @@ class ArmyBuilder:
         elif matching_unit.quantity == quantity:
             army.units.remove(matching_unit)
         else:
-            removed_successfully = False
+            success = False
             messages.append("cannot remove a negative number of units")
-        return {"removed_successfully": removed_successfully, "messages": messages}
+        return {"success": success, "messages": messages}
 
     def list_army_units(self, army: Army):
         army_units_list = []
