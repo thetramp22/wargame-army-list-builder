@@ -69,7 +69,7 @@ class ArmyBuilder:
         else:
             success = False
             messages.append("cannot remove a negative number of units")
-        return {"success": success, "messages": messages}
+        return {"success": success, "unit": matching_unit, "messages": messages}
 
     def list_army_units(self, army: Army):
         army_units_list = []
@@ -121,4 +121,4 @@ class ArmyBuilder:
                     f"- {army.name} has more than {unit_limit} {army_unit.unit.name} units"
                 )
 
-        return {"is_valid_army": is_valid_army, "error_messages": error_messages}
+        return {"success": is_valid_army, "messages": error_messages}

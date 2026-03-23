@@ -3,7 +3,7 @@ from services.army_builder import ArmyBuilder
 from services.army_repository import ArmyRepository
 from cli.interface import Interface
 
-filepath = "./data/armies/armies.json"
+filepath = "./data/armies.json"
 
 
 def main():

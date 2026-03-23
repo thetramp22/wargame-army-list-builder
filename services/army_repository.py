@@ -124,10 +124,10 @@ class ArmyRepository:
                 "army": army,
                 "messages": messages,
             }
-        armies_data = read_status["data"]["armies"]
+        file_data = read_status["data"]
         army_data = army.to_dict()
-        armies_data[army_data["name"]] = army_data
-        write_status = self._write_file(armies_data)
+        file_data["armies"][army_data["name"]] = army_data
+        write_status = self._write_file(file_data)
         if not write_status["success"]:
             success = False
             messages += write_status["messages"]
