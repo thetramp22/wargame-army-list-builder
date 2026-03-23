@@ -20,6 +20,10 @@ WIP
 
 ## Current Progress
 
+Update 3/23/2026:
+
+Work on milestone 7 just wrapped up.  At this point, the project will probably move to my backlog where I will work on it when I have time, but will not be focus on it for now.  The purpose of the project was to practice and polish my skills with Python and in that I believe it has been a success.  I ran into many roadblocks I had to work through, and feel I have a much better grasp on thing for having done so.
+
 ### Project Roadmap
 
 #### Milestone 1 - Load Data ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
@@ -68,7 +72,7 @@ The program should validate things like:
 - points cannot exceed limit
 - maximum duplicate units
 
-#### Milestone 6 - Saving and Loading Armies ![Static Badge](https://img.shields.io/badge/Status-In_Progress-green)
+#### Milestone 6 - Saving and Loading Armies ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
 The program can save and load armies from storage.
 
 Armies will be saved as JSON files.
@@ -78,7 +82,7 @@ The program should be able to:
 - load army
 - list saved armies
 
-#### Milestone 7 - CLI Interface ![Static Badge](https://img.shields.io/badge/Status-Not_Started-gray)
+#### Milestone 7 - CLI Interface ![Static Badge](https://img.shields.io/badge/Status-Done-blue)
 User should be able to ineract with program through the cli.
 
 #### Milestone 8 - Optional Features ![Static Badge](https://img.shields.io/badge/Status-Not_Started-gray)
@@ -90,20 +94,28 @@ User should be able to ineract with program through the cli.
 Expose functionality via an API
 
 ### Features Implemented
-
-### Features Planned
-
-#### Core Features
 - Create an army
 - Add a unit
 - Remove a unit
 - Calculate total points
 - Show the list
-
-#### Additional Features
 - Save lists
 - Load lists
 - Validate lists
+
+### Features Planned
+
+#### Core Features
+- ~~Create an army~~
+- ~~Add a unit~~
+- ~~Remove a unit~~
+- ~~Calculate total points~~
+- ~~Show the list~~
+
+#### Additional Features
+- ~~Save lists~~
+- ~~Load lists~~
+- ~~Validate lists~~
 - Import rules/unit data
 - Export lists in various formats
 
